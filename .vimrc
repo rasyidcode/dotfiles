@@ -87,3 +87,7 @@ set clipboard=unnamedplus
 
 set background=dark
 colorscheme slate
+
+" --- Just adding comments
+"  Another comment
+"  My comment
