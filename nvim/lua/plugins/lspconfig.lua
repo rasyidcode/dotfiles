@@ -5,16 +5,13 @@ return {
             -----------------------------------------------------------
             -- C LANGUAGE SERVER (clangd)
             -----------------------------------------------------------
-            local lspconfig = require("lspconfig")
-            lspconfig.cland.setup({
-                cmd = { "cland", "--background-index" }
-            })
+            vim.lsp.enable({ 'clangd', 'lua_ls' })
 
             -----------------------------------------------------------
             -- FORMAT ON SAVE (clang-format)
             -----------------------------------------------------------
             vim.api.nvim_create_autocmd("BufWritePre", {
-                pattern = { "*.c", "*.h" },
+                pattern = { "*.c", "*.h", "*.lua" },
                 callback = function()
                     vim.lsp.buf.format({ async = false })
                 end,
