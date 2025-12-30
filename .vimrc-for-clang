@@ -1,1 +1,66 @@
-/home/ajdev/.vimrc
+" --- General Settings ---
+syntax on			" Enable syntax highlighting
+set number			" Show line numbers
+set relativenumber		" Relative numbers help with jumping lines
+set cursorline			" Highlight the current line
+set clipboard=unnamedplus	" Use sytem clipboard
+set noshowmode          " hide message from the bottom line
+
+" May need for Vim since coc.nvim calculates byte offset by count utf-8 byte
+" sequence
+set encoding=utf-8
+
+" Turn off backup and swp file
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Reduce updatetime to 300ms to increase user experience
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostic appear/become resolved
+set signcolumn=yes
+
+" --- C-Specific Indentation --- 
+set tabstop=4			" Number of visual spaces per TAB
+set softtabstop=4		" Number of spaces in tab when editing
+set shiftwidth=4		" Tabs under smartindent
+set expandtab			" Convert tabs to spaces
+set smartindent			" Intelegent indentation for C
+set cindent			" Spesific indentation for C-style languages
+
+" --- Plugin Management
+call plug#begin('~/.vim/plugged')
+
+" Appearance & UI
+Plug 'morhetz/gruvbox'		" Great color scheme for C
+Plug 'vim-airline/vim-airline'	" Status bar
+
+" Code Intelligence
+Plug 'neoclide/coc.nvim', {'branch': 'release'}	" Autocomplete (LSP)
+Plug 'preservim/nerdtree'			" File explorer
+
+call plug#end()
+
+" --- Keybindings ---
+let mapleader = " "
+nmap <leader>e :NERDTreeToggle<CR>
+" Compile and Run shortcut (GCC)
+autocmd FileType c nnoremap <leader>r :w <bar> !gcc -Wall % -o %< && ./%< <CR>
+
+" Use gruvbox theme
+set termguicolors
+colorscheme gruvbox
+set background=dark
+
+" -- [coc.nvim] --
+
+
+" -- [vim-airline] --
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" -- test
