@@ -1,7 +1,18 @@
 " 2026 vimrc config
 
+call plug#begin()
+
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+call plug#end()
+
 " --- General Settings ---
-syntax on			" Enable syntax highlighting
+"syntax on			" Enable syntax highlighting
 set number			" Show line numbers
 set relativenumber		" Relative numbers help with jumping lines
 set cursorline			" Highlight the current line
@@ -52,3 +63,11 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" Tab completion
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+" Force refresh
+" imap <c-space> <Plug>(asyncomplete_force_refresh)
