@@ -1,5 +1,3 @@
-" 2026 vimrc config
-
 " --- General Settings ---
 syntax on			" Enable syntax highlighting
 set number			" Show line numbers
