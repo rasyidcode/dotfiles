@@ -1,0 +1,51 @@
+" ========================
+" General Settings
+" ========================
+set nocompatible
+filetype plugin indent on
+syntax on
+
+set number
+set relativenumber
+set cursorline
+
+set hidden
+set nowrap
+
+" Searching
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" Clipboard
+set clipboard=unnamedplus
+
+" Performance
+set updatetime=300
+
+" ========================
+" Indentation (default)
+" ========================
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+
+" ========================
+" Go-specific settings
+" ========================
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+" ========================
+" Auto format on save (IMPORTANT)
+" ========================
+autocmd BufWritePre *.go silent! execute '!gofmt -w %'
+
+" Reload file after external format
+autocmd BufWritePost *.go edit!
+
+set background=dark
+colorscheme slate
+
+autocmd vimenter * ++nested colorscheme gruvbox
