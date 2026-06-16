@@ -121,6 +121,6 @@ augroup lsp_install
 augroup END
 
 " folding
-set foldmethod=expr
-    \ foldexpr=lsp#ui#vim#folding#foldexpr()
-    \ foldtext=lsp#ui#vim#folding#foldtext()
+"set foldmethod=expr
+"    \ foldexpr=lsp#ui#vim#folding#foldexpr()
+"    \ foldtext=lsp#ui#vim#folding#foldtext()
