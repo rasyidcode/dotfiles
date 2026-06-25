@@ -18,6 +18,7 @@ set relativenumber		" Relative numbers help with jumping lines
 set cursorline			" Highlight the current line
 set clipboard=unnamedplus	" Use sytem clipboard
 set noshowmode          " hide message from the bottom line
+set mouse=a " enable mouse
 
 set encoding=utf-8
 
@@ -105,6 +106,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
+    nmap <buffer> gf <plug>(lsp-document-format)
     nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
