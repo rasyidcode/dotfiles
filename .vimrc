@@ -8,6 +8,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -126,3 +128,13 @@ augroup END
 "set foldmethod=expr
 "    \ foldexpr=lsp#ui#vim#folding#foldexpr()
 "    \ foldtext=lsp#ui#vim#folding#foldtext()
+"
+
+" fuzzy finder settings
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GFiles<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fh :History<CR>
+nnoremap <leader>fl :Lines<CR>
+nnoremap <leader>fbl :BLines<CR>
+nnoremap <leader>frg :Rg<CR>
