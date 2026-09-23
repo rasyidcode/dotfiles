@@ -138,3 +138,7 @@ nnoremap <leader>fh :History<CR>
 nnoremap <leader>fl :Lines<CR>
 nnoremap <leader>fbl :BLines<CR>
 nnoremap <leader>frg :Rg<CR>
+
+" buffer navigate
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>p :bp<CR>
