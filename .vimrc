@@ -14,84 +14,78 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " --- General Settings ---
-"syntax on			" Enable syntax highlighting
-set number			" Show line numbers
-set relativenumber		" Relative numbers help with jumping lines
-set cursorline			" Highlight the current line
+"syntax on			        " Enable syntax highlighting
+set number			        " Show line numbers
+set relativenumber		    " Relative numbers help with jumping lines
+set cursorline			    " Highlight the current line
 set clipboard=unnamedplus	" Use sytem clipboard
-set noshowmode          " hide message from the bottom line
-set mouse=a " enable mouse
+set noshowmode              " hide message from the bottom line
+set mouse=a                 " enable mouse
 
 set encoding=utf-8
 
-" Turn off backup and swp file
-set nobackup
-set nowritebackup
-set noswapfile
+" --- Backup and swap settings ---
+set backup                  " Keep backup files
+set writebackup             " Temporary backup while writing
+set swapfile                " Enable swap file, useful if crash recovery
 
-" Reduce updatetime to 300ms to increase user experience
-set updatetime=300
+set updatetime=300          " Reduce updatetime to 300ms to increase user experienced
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostic appear/become resolved
 set signcolumn=yes
 
 " --- C-Specific Indentation --- 
-set tabstop=4			" Number of visual spaces per TAB
-set softtabstop=4		" Number of spaces in tab when editing
-set shiftwidth=4		" Tabs under smartindent
-set expandtab			" Convert tabs to spaces
-set smartindent			" Intelegent indentation for C
-set cindent			" Spesific indentation for C-style languages
+set tabstop=4			    " Number of visual spaces per TAB
+set softtabstop=4		    " Number of spaces in tab when editing
+set shiftwidth=4		    " Tabs under smartindent
+set expandtab			    " Convert tabs to spaces
+set smartindent			    " Intelegent indentation for C
+set cindent			        " Spesific indentation for C-style languages
 
 " --- Keybindings ---
 let mapleader = " "
 
-" --- Netraw settings
-nnoremap <space>e :Lexplore<CR>
-nnoremap <space>v :Vexplore<CR>
-let g:netrw_keepdir = 0
+" --- Netrw settings
+let g:netrw_keepdir = 1         " Preserved the project root
 let g:netrw_banner = 1
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 3
+let g:netrw_browse_split = 0    " Re-use the same window when opening a file
 let g:netrw_winsize = 30
 
-" Use gruvbox theme
+" Hide dotfiles and swap files by default (press 'a' to toggle)
+let g:netrw_list_hide = '.*\.sw[a-p]$,.*\.bak$,\~$'
+let g:netrw_hide = 1
+
+nnoremap <leader>e :Explore<CR>
+
+autocmd FileType netrw setlocal bufhidden=wipe  " Wipe Netrw directory buffers when leaving them
+
+" --- Theming ---
 set termguicolors
-colorscheme gruvbox
+colorscheme gruvbox         " Use gruvbox theme
 set background=dark
 
-" -- [vim-airline] --
+" --- vim-airline/vim-airline ---
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-" Tab completion
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-
 " Force refresh
 " imap <c-space> <Plug>(asyncomplete_force_refresh)
 
-" Disable diagnostic
-" let g:lsp_diagnostic_enabled = 0
+let g:lsp_diagnostic_enabled = 1 " Enable diagnostic
 
-" prabirshrestha/asyncomplete.vim
-" ====================================
+" --- prabirshrestha/asyncomplete.vim ---
 let g:asyncomplete_auto_popup = 0
 
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1] =~ '\s'
-endfunction
+imap <C-Space>  <Plug>(asyncomplete_force_refresh)
+imap <C-@>      <Plug>(asyncomplete_force_refresh)
 
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ asyncomplete#force_refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 " lsp mapping
 function! s:on_lsp_buffer_enabled() abort
