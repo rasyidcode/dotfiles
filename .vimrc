@@ -31,9 +31,13 @@ set swapfile                " Enable swap file, useful if crash recovery
 
 set updatetime=300          " Reduce updatetime to 300ms to increase user experienced
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostic appear/become resolved
-set signcolumn=yes
+set signcolumn=yes          " Always show the signcolumn, otherwise it would shift the text each time diagnostic appear/become resolved
+
+" Searching
+set ignorecase              " Makes searches case-insentive by default
+set smartcase               " Automatically switches to case-sensitive
+set incsearch               " Enables incremental search
+set hlsearch                " Highlights all matches found in the active buffer
 
 " --- C-Specific Indentation --- 
 set tabstop=4			    " Number of visual spaces per TAB
@@ -51,7 +55,6 @@ let g:netrw_keepdir = 1         " Preserved the project root
 let g:netrw_banner = 1
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 0    " Re-use the same window when opening a file
-let g:netrw_winsize = 30
 
 " Hide dotfiles and swap files by default (press 'a' to toggle)
 let g:netrw_list_hide = '.*\.sw[a-p]$,.*\.bak$,\~$'
@@ -63,8 +66,10 @@ autocmd FileType netrw setlocal bufhidden=wipe  " Wipe Netrw directory buffers w
 
 " --- Theming ---
 set termguicolors
-colorscheme gruvbox         " Use gruvbox theme
+colorscheme slate " Use gruvbox theme
 set background=dark
+
+autocmd VimEnter * ++nested colorscheme gruvbox
 
 " --- vim-airline/vim-airline ---
 let g:airline_powerline_fonts = 1
@@ -130,8 +135,8 @@ nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>fh :History<CR>
 nnoremap <leader>fl :Lines<CR>
-nnoremap <leader>fbl :BLines<CR>
-nnoremap <leader>frg :Rg<CR>
+nnoremap <leader>fb :BLines<CR>
+nnoremap <leader>fr :Rg<CR>
 
 " buffer navigate
 nnoremap <leader>n :bn<CR>
