@@ -1,14 +1,26 @@
 # Dotfiles
 
-Personal dotfiles and development environment configurations.
+Personal dotfiles and development environment configurations organized as modular packages compatible with [GNU Stow](https://www.gnu.org/software/stow/).
 
-## Repository Structure
+## Package Structure
 
-* `.vimrc` - Vim configuration
-* `.tmux.conf` - Tmux configuration
-* `nvim/` - Neovim configuration
-* `vscode/` - Visual Studio Code settings & keybindings
-* `.gemini/config/skills/` - Global Antigravity agent skills (e.g., `clone-my-repo`)
+```text
+dotfiles/
+├── antigravity/
+│   └── .gemini/config/skills/
+│       └── clone-my-repo/
+│           └── SKILL.md          # Global Antigravity skill
+├── vim/
+│   └── .vimrc                   # Vim configuration
+├── tmux/
+│   └── .tmux.conf               # Tmux configuration
+├── nvim/
+│   └── .config/nvim/            # Neovim configuration
+├── vscode/
+│   └── .config/Code/User/       # VS Code settings
+├── setup.sh                     # Automated bootstrap script
+└── README.md
+```
 
 ---
 
@@ -21,27 +33,39 @@ git clone git@github.com:rasyidcode/dotfiles.git ~/My-Work/dotfiles
 cd ~/My-Work/dotfiles
 ```
 
-### Option A: Using GNU Stow (Recommended)
+### Option 1: Automated Script (Recommended)
+
+Run the included setup script. It automatically uses GNU Stow if available, or falls back to direct symlinks:
+
+```bash
+./setup.sh
+```
+
+### Option 2: Using GNU Stow Manually
 
 If GNU Stow is installed (`sudo apt install stow`):
 
 ```bash
-# Mass-symlink all configurations to $HOME
-stow -v -t ~ .
+# Stow all packages to $HOME
+stow -v -R -t ~ antigravity vim tmux nvim vscode
 ```
 
-### Option B: Manual Symlinks
+Or stow individual packages:
 
 ```bash
-# Vim & Tmux
-ln -sfn ~/My-Work/dotfiles/.vimrc ~/.vimrc
-ln -sfn ~/My-Work/dotfiles/.tmux.conf ~/.tmux.conf
+stow -v -t ~ vim
+stow -v -t ~ tmux
+stow -v -t ~ antigravity
+```
 
-# Neovim
-mkdir -p ~/.config/nvim
-ln -sfn ~/My-Work/dotfiles/nvim/* ~/.config/nvim/
+### Option 3: Manual Symlinks
 
-# Antigravity Skills
-mkdir -p ~/.gemini/config
-ln -sfn ~/My-Work/dotfiles/.gemini/config/skills ~/.gemini/config/skills
+```bash
+mkdir -p ~/.config ~/.config/Code/User ~/.gemini/config
+
+ln -sfn ~/My-Work/dotfiles/vim/.vimrc ~/.vimrc
+ln -sfn ~/My-Work/dotfiles/tmux/.tmux.conf ~/.tmux.conf
+ln -sfn ~/My-Work/dotfiles/nvim/.config/nvim ~/.config/nvim
+ln -sfn ~/My-Work/dotfiles/vscode/.config/Code/User/settings.json ~/.config/Code/User/settings.json
+ln -sfn ~/My-Work/dotfiles/antigravity/.gemini/config/skills ~/.gemini/config/skills
 ```
