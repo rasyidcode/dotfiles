@@ -25,9 +25,9 @@ set mouse=a                 " enable mouse
 set encoding=utf-8
 
 " --- Backup and swap settings ---
-set backup                  " Keep backup files
-set writebackup             " Temporary backup while writing
-set swapfile                " Enable swap file, useful if crash recovery
+set nobackup                  " Keep backup files
+set nowritebackup             " Temporary backup while writing
+set noswapfile                " Enable swap file, useful if crash recovery
 
 set updatetime=300          " Reduce updatetime to 300ms to increase user experienced
 
