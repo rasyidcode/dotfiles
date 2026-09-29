@@ -12,7 +12,7 @@ This skill automates cloning GitHub repositories for the user into the local dev
 ## Default Configurations
 
 * **Default GitHub User:** `rasyidcode`
-* **Default Base Path:** `~/My-Work/` (`/home/nb81/My-Work/`)
+* **Default Base Path:** `~/My-Work/`
 * **Default URL Scheme:** SSH (`git@github.com:rasyidcode/<repo-name>.git`)
 
 ---
@@ -49,6 +49,6 @@ This skill automates cloning GitHub repositories for the user into the local dev
 ### 5. Report to User
 * Provide a summary with:
   * Repository name and remote URL.
-  * Clickable file link to the cloned directory: `[~/My-Work/<repo-name>](file:///home/nb81/My-Work/<repo-name>)`.
+  * Clickable file link to the cloned directory: `[~/My-Work/<repo-name>].
   * Active branch and working tree status.
   * If no project/workspace is currently open in the IDE/Antigravity, remind the user that they can set `~/My-Work/<repo-name>` as their active workspace.
