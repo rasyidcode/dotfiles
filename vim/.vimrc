@@ -155,6 +155,14 @@ function! CapsLockStatus() abort
     return ' CAPS OFF '
 endfunction
 
+function! CapsLockStatus2() abort
+    if !executable('xset')
+        return ''
+    endif
+
+    return system('xset -q') =~# 'Caps Lock:\s*on' ? ' CAPS ON ' : ' CAPS OFF '
+endfunction
+
 let g:airline_section_x = '%{CapsLockStatus()}'
 
 function! RefreshCapsLockStatus(timer) abort
