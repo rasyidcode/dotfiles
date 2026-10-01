@@ -141,3 +141,26 @@ nnoremap <leader>fr :Rg<CR>
 " buffer navigate
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
+
+" show capslock status
+function! CapsLockStatus() abort
+    let l:files = glob('/sys/class/leds/*::capslock/brightness', 0, 1)
+
+    for l:file in l:files
+        if filereadable(l:file) && get(readfile(l:file), 0, '0') ==# '1'
+            return ' CAPS ON '
+        endif
+    endfor
+
+    return ' CAPS OFF '
+endfunction
+
+let g:airline_section_x = '%{CapsLockStatus()}'
+
+function! RefreshCapsLockStatus(timer) abort
+    redrawstatus
+endfunction
+
+if exists('*timer_start')
+    call timer_start(250, function('RefreshCapsLockStatus'), {'repeat': -1})
+endif
