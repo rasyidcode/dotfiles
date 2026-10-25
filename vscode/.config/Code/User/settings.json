@@ -23,5 +23,12 @@
     "<C-p>": false,
     "<C-space>": false
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": false,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "chat.disableAIFeatures": true
 }
